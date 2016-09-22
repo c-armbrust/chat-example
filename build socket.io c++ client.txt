@@ -1,0 +1,17 @@
+Download boost from boost.org
+Unpack boost to ~/Downloads/boost_1_61_0
+cd ~/Downloads/boost_1_61_0 
+sudo ./bootstrap.sh
+
+sudo bjam install --prefix="~/Downloads/boost_1_61_0" --with-system --with-date_time --with-random link=static runtime-link=shared threading=multi
+
+sudo apt-get install libssl-dev
+
+cd
+git clone --recurse-submodules https://github.com/socketio/socket.io-client-cpp.git
+cd socket.io-client-cpp
+
+sudo cmake -DBOOST_ROOT:STRING=~/Downloads/boost_1_61_0/~/Downloads/boost_1_61_0/ -DBOOST_VER:STRING=1.61.0 ./
+
+Done.
+Outputs is under ./build (~/socket.io-client-cpp/build), link with the all static libs under ./build/lib and include headers under ./build/include in your client code where you want to use it.
